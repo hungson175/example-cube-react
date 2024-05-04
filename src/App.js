@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {useCubeQuery} from "@cubejs-client/react";
+import SampleChart from "./sample-vega-lite";
+import SampleHookForm from "./sample-hook-form";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { resultSet, isLoading, error, progress } = useCubeQuery(
+        {
+            "measures": [
+                "line_items.count"
+            ],
+            "timeDimensions": [
+                {
+                    "dimension": "line_items.created_at",
+                    "granularity": "week"
+                }
+            ],
+            "order": {
+                "line_items.created_at": "asc"
+            }
+        }
+    );
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.toString()}</div>;
+
+    // Access data safely
+    const data = resultSet?.loadResponses[0].data;
+
+    return (
+        <div className="App">
+            <SampleChart data={data}/>
+            <ChartConfigs
+            />
+        </div>
+        // <div>
+        //     <RecipeForm saveData={saveData} />
+        // </div>
+    );
 }
 
 export default App;
