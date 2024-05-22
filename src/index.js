@@ -3,8 +3,7 @@ import "./index.css";
 import ReactDOM from 'react-dom/client';
 import cube from '@cubejs-client/core';
 import {CubeProvider} from "@cubejs-client/react";
-// import MultipleCharts from "./MultipleCharts";
-import {FormProviderApp} from "./components/learn-form-provider";
+import ChartApp from "./ChartApp";
 
 
 const cubeApi = cube(
@@ -15,7 +14,7 @@ const cubeApi = cube(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <CubeProvider cubeApi={cubeApi}>
-        {/*<MultipleCharts />*/}
-        <FormProviderApp />
+        <ChartApp />
+        {/*<FormProviderApp />*/}
     </CubeProvider>
 );
