@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom/client';
 import cube from '@cubejs-client/core';
 import {CubeProvider} from "@cubejs-client/react";
 import ChartApp from "./ChartApp";
+import HelloMUI from "./learn/learn-mui/hello-mui";
+import CreateReactApp from "./learn/learn-mui/CreateReactApp";
+import SignIn from "./learn/learn-mui/SignIn";
 
 
 const cubeApi = cube(
@@ -14,6 +17,8 @@ const cubeApi = cube(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <CubeProvider cubeApi={cubeApi}>
+        {/*<SignIn />*/}
+        {/*<CreateReactApp />*/}
         <ChartApp />
         {/*<FormProviderApp />*/}
     </CubeProvider>

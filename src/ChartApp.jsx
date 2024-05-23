@@ -23,6 +23,8 @@ export default function ChartApp() {
     function handleOnUpdateConfigs() {
         console.log("click update config")
         methods.setValue("updateTime", Date.now())
+        const allData = methods.getValues()
+        console.log("allData: ", JSON.stringify(allData))
     }
 
     return (

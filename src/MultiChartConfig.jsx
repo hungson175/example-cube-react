@@ -1,14 +1,26 @@
 import {useFormContext} from "react-hook-form";
-
+import {Box, Container, createTheme, ThemeProvider} from "@mui/material";
+const defaultTheme = createTheme();
 export default function MultiChartConfig({fieldArray}) {
     const {register, handleSubmit} = useFormContext()
     const onSubmit = (data) => console.log(data)
     return (
-        <div>
+
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="xs">
+                <Box component="form" onSubmit={onSubmit()}>
+
+                </Box>
+            </Container>
             <form onSubmit={handleSubmit(onSubmit)}>
                 {fieldArray.fields.map(((field, index) => (
                     <div key={field.id}>
-                        <input {...register(`configList.${index}.chartType`)}/>
+                        <select {...register(`configList.${index}.chartType`)} >
+                            <option value="line">Line</option>
+                            <option value="bar">Bar</option>
+                            <option value="area">Area</option>
+                        </select>
+                        {/*<input {...register(`configList.${index}.chartType`)}/>*/}
                         <input {...register(`configList.${index}.xAxis`)}/>
                         <input {...register(`configList.${index}.yAxis`)}/>
                         <button onClick={() => fieldArray.remove(index)}> Remove</button>
@@ -23,7 +35,7 @@ export default function MultiChartConfig({fieldArray}) {
                 })
             }}> Add chart
             </button>
+        </ThemeProvider>
 
-        </div>
     )
 }
