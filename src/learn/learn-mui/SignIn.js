@@ -7,7 +7,7 @@ import {
     CssBaseline,
     FormControlLabel,
     Grid,
-    Link,
+    Link, MenuItem, Select,
     TextField,
     ThemeProvider,
     Typography
@@ -77,7 +77,12 @@ export default function SignIn() {
                         control={<Checkbox value="remember" color="primary"/>}
                         label="Remember me"
                     />
-
+                    <Select>
+                        <MenuItem value={0}> Zero </MenuItem>
+                        <MenuItem value={1}> One </MenuItem>
+                        <MenuItem value={2}> Two </MenuItem>
+                        <MenuItem value={3}> Three </MenuItem>
+                    </Select>
                     <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2}}>Sign In</Button>
                     <Grid container>
                         <Grid item xs>

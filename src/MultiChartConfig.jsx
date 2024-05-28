@@ -1,8 +1,13 @@
-import {useFormContext} from "react-hook-form";
-import {Box, Container, createTheme, ThemeProvider} from "@mui/material";
+import {Controller, useFormContext} from "react-hook-form";
+import {Box, Container, createTheme, MenuItem, Select, ThemeProvider} from "@mui/material";
+
 const defaultTheme = createTheme();
 export default function MultiChartConfig({fieldArray}) {
-    const {register, handleSubmit} = useFormContext()
+    const {
+        register,
+        handleSubmit,
+        control
+    } = useFormContext()
     const onSubmit = (data) => console.log(data)
     return (
 
@@ -15,12 +20,28 @@ export default function MultiChartConfig({fieldArray}) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 {fieldArray.fields.map(((field, index) => (
                     <div key={field.id}>
-                        <select {...register(`configList.${index}.chartType`)} >
-                            <option value="line">Line</option>
-                            <option value="bar">Bar</option>
-                            <option value="area">Area</option>
-                        </select>
-                        {/*<input {...register(`configList.${index}.chartType`)}/>*/}
+                        <Controller
+                            name={`configList.${index}.chartType`}
+                            control={control}
+                            render={({field}) => (
+                                <Select {...field}>
+                                    <MenuItem value={"line"}> Line </MenuItem>
+                                    <MenuItem value={"bar"}> Bar </MenuItem>
+                                    <MenuItem value={"area"}> Area </MenuItem>
+                                </Select>
+                            )}
+                        />
+                        <Controller
+                            name={`configList.${index}.aggregator`}
+                            control={control}
+                            render={({field}) => (
+                                <Select {...field}>
+                                    <MenuItem value={"sum"}> Sum </MenuItem>
+                                    <MenuItem value={"avg"}> Avg </MenuItem>
+                                    <MenuItem value={"count"}> Count </MenuItem>
+                                </Select>
+                            )}
+                        />
                         <input {...register(`configList.${index}.xAxis`)}/>
                         <input {...register(`configList.${index}.yAxis`)}/>
                         <button onClick={() => fieldArray.remove(index)}> Remove</button>

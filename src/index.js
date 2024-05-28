@@ -7,6 +7,10 @@ import ChartApp from "./ChartApp";
 import HelloMUI from "./learn/learn-mui/hello-mui";
 import CreateReactApp from "./learn/learn-mui/CreateReactApp";
 import SignIn from "./learn/learn-mui/SignIn";
+import LearnCubejJS from "./learn/cubejs/cubeQuery";
+import SimpleMenu from "./learn/learn-mui/popup-state-hooks/SimpleMenuWithoutHooks";
+import SimpleMenuWithHooks from "./learn/learn-mui/popup-state-hooks/SimpleMenuWithHooks";
+import SimpleFormControl from "./learn/learn-mui/SimpleFormControl";
 
 
 const cubeApi = cube(
@@ -19,7 +23,11 @@ root.render(
     <CubeProvider cubeApi={cubeApi}>
         {/*<SignIn />*/}
         {/*<CreateReactApp />*/}
-        <ChartApp />
+        {/*<ChartApp />*/}
+        {/*<LearnCubejJS />*/}
+        {/*<SimpleMenu />*/}
+        {/*<SimpleMenuWithHooks />*/}
+        <SimpleFormControl />
         {/*<FormProviderApp />*/}
     </CubeProvider>
 );
